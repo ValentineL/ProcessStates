@@ -1,13 +1,13 @@
 <script>
- 
-// The script can be executed here -> https://js.do/ValentineL/processing_states
 
-// modify the data array by providing states and optional error codes within the same object
-// e.g. states can be 'processing', 'error', 'success' and error codes 'NO_STOCK', 'INCORRECT_DETAILS', null, undefined
+    // The script can be executed here -> https://js.do/ValentineL/processing_states
 
-const data = [{ state: 'processing' }, { state: 'error', errorCode: 'NO_STOCK' }];
+    // modify the data array by providing states and optional error codes within the same object
+    // e.g. states can be 'processing', 'error', 'success' and error codes 'NO_STOCK', 'INCORRECT_DETAILS', null, undefined
 
-// after editing the data press "Run script" button
+    const data = [{ state: 'processing' }, { state: 'error', errorCode: 'NO_STOCK' }];
+
+    // after editing the data press "Run script" button
 
     const sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -18,26 +18,29 @@ const data = [{ state: 'processing' }, { state: 'error', errorCode: 'NO_STOCK' }
         if (data.length) {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].state === 'processing' && i < data.length - 1) {
-                    alert('Next state');
+                    alert('Processing');
                     await sleep(2000);
                 }
-                if (data[i].state === 'error') {
+                else if (data[i].state === 'error') {
                     if (data[i].errorCode === null || data[i].errorCode === undefined) {
-                        alert('Error page');
+                        alert(`{ title: 'Error page', message: null }`);
                         return { title: 'Error page', message: null };
                     }
                     if (data[i].errorCode === 'NO_STOCK') {
-                        alert('No stock');
+                        alert(`{ title: 'Error page', message: 'No stock has been found' }`);
                         return { title: 'Error page', message: 'No stock has been found' };
                     }
                     if (data[i].errorCode === 'INCORRECT_DETAILS') {
-                        alert('Incorrect details');
+                        alert(`{ title: 'Error page', message: 'Incorrect details have been entered' }`);
                         return { title: 'Error page', message: 'Incorrect details have been entered' };
                     }
                 }
-                if (data[i].state === 'success') {
-                    alert('Success');
+                else if (data[i].state === 'success') {
+                    alert(`{ title: 'Order complete', message: null }`);
                     return { title: 'Order complete', message: null };
+                }
+                else {
+                    alert('Next state is not available');
                 }
             }
         }
