@@ -1,21 +1,19 @@
+<script>
+ 
 // The script can be executed here -> https://js.do/ValentineL/processing_states
 
 // modify the data array by providing states and optional error codes within the same object
 // e.g. states can be 'processing', 'error', 'success' and error codes 'NO_STOCK', 'INCORRECT_DETAILS', null, undefined
+
+const data = [{ state: 'processing' }, { state: 'error', errorCode: 'NO_STOCK' }];
+
 // after editing the data press "Run script" button
- 
-<script>
 
     const sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    const getProcessingPage = async () => {
-
-        // modify the data array by providing states and optional error codes within the same object
-        // e.g. states can be 'processing', 'error', 'success' and error codes 'NO_STOCK', 'INCORRECT_DETAILS', null, undefined
-
-        const data = [{ state: 'processing' }, { state: 'error', errorCode: 'NO_STOCK' }];
+    const getProcessingPage = async (data) => {
 
         if (data.length) {
             for (let i = 0; i < data.length; i++) {
@@ -47,4 +45,4 @@
 
 </script>
 
-<input type=button onClick="getProcessingPage()" value="Run script">
+<input type=button onClick="getProcessingPage(data)" value="Run script">
